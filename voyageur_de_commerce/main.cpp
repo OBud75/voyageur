@@ -92,18 +92,20 @@ int main(int argc, char *argv[])
     all_cities.free();
 }
 
-
 void researchBestPath(City *current_city, Cities *path, int current_distance){
     //affiche la ville sommet actuelle et la route en cours d'exploration
     std::cout << "Recherche distance(" << current_distance << ") Ville : " << current_city->getName() << " Route : ";
     path->display();
+    City *city_already_visited = path->find(current_city->getName());
     path->addCity(current_city);
 
     // A path candidate has already been found and we have travelled too far
     if(shortest_distance != -1 && current_distance > shortest_distance)
+    {
         return;
+    }
 
-    if(path->getSize() == all_cities.getSize())
+    if(path->getSize() == all_cities.getSize() + 1 && current_city == startingCity)
     {
         if(current_distance < shortest_distance || shortest_distance == -1)
         {
@@ -118,16 +120,15 @@ void researchBestPath(City *current_city, Cities *path, int current_distance){
         }
         return;
     }
+    if(city_already_visited != nullptr)
+    {
+        return;
+    }
     for(size_t i = 0; i < current_city->getNeighbors().size(); i++)
     {
         City *next_city = current_city->getNeighbors()[i]->getCity();
-        if(path->find(next_city->getName()) != nullptr)
-        {
-            continue;
-        }
         researchBestPath(next_city, path, current_distance + current_city->getNeighbors()[i]->getDistance());
         path->removeLastCity();
     }
-
 }
 

@@ -29,11 +29,8 @@ void Cities::addCity(const std::string name)
 
 void Cities::addCity(City *city)
 {
-    if(find(city->getName()) == nullptr)
-    {
-        cities.push_back(city);
-        size++;
-    }
+    cities.push_back(city);
+    size++;
 }
 
 void Cities::removeLastCity()
