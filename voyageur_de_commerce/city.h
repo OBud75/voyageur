@@ -12,8 +12,6 @@ class City
 private:
     std::string name;
     std::vector<Neighbor*> neighbors;
-    std::vector<Cities*> currentPath;
-    std::vector<Cities*> bestPath;
     int distance;
 public:
     City(const std::string&);
@@ -21,10 +19,9 @@ public:
     void addNeighbor(City *, int);
     void display(int, std::vector<City*> *);
     City *findNeighbor(const std::string);
-    Cities * getCurrentPath();
-    Cities * getBestPath();
     int getDistance();
-
+    std::vector<Neighbor*> getNeighbors();
+    ~City();
 };
 
 #endif

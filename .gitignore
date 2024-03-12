@@ -1,0 +1,9 @@
+*.cbp
+*.depend
+*.layout
+*.o
+*.d
+old
+backup
+voyageur_commerce
+bin

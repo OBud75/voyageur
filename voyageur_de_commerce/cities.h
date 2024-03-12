@@ -13,9 +13,14 @@ private:
     std::vector<City*> cities;
 public:
     Cities();
+    Cities(Cities *);
+    size_t getSize();
     void addCity(const std::string);
     void addCity(City *);
+    void removeLastCity();
     City *find(const std::string);
+    void display();
+    void free();
 };
 
 #endif

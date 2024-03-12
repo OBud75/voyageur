@@ -55,21 +55,20 @@ City *City::findNeighbor(const std::string name)
     return nullptr;
 }
 
-//ajout
-Cities * City::getCurrentPath(){
-
-    return currentPath;
-
+std::vector<Neighbor*> City::getNeighbors()
+{
+    return neighbors;
 }
 
-Cities * City::getBestPath(){
-
-    return bestPath;
-
-}
-
-int City::getDistance(){
-
+int City::getDistance()
+{
     return distance;
+}
 
+City::~City()
+{
+    for(size_t i = 0; i < neighbors.size(); i++)
+    {
+        delete neighbors[i];
+    }
 }
