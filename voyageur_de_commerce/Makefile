@@ -4,7 +4,7 @@ LDFLAGS =
 SOURCES = $(wildcard *.cpp)
 DEPENDENCIES = $(SOURCES:.cpp=.d)
 OBJECTS = $(SOURCES:.cpp=.o)
-EXECUTABLE = voyageur_commerce_achandeze
+EXECUTABLE = voyageur_commerce_achandeze.bin
 
 all: $(EXECUTABLE)
 

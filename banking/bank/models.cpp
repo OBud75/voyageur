@@ -2,6 +2,10 @@
 
 using namespace std;
 
+/*------------------------------------------------
+                    Bank
+--------------------------------------------------*/
+
 Bank::Bank(std::string name){
     std::cout << "Create Bank: " << name << std::endl;
     _name = name;
@@ -11,6 +15,9 @@ std::string Bank::getBankName(){
     return _name;
 }
 
+/*------------------------------------------------
+                    Account
+--------------------------------------------------*/
 
 Account::Account(Client& _client, double _amount, Bank& _bank) : bank(_bank), client(_client){
     try {
@@ -69,6 +76,10 @@ void Account::display_details(){
 //        Bank &bank;
 //};
 
+/*------------------------------------------------
+                    Client
+--------------------------------------------------*/
+
 Client::Client(std::string name, double cash){
     std::cout << "Create Client: " << name << " (" << cash << ")" << std::endl;
     _name = name;
@@ -93,6 +104,9 @@ void Client::remove_cash(double amount){
     std::cout << _name << " has " << _cash << " in cash." << std::endl;
 }
 
+/*------------------------------------------------
+                    ATM
+--------------------------------------------------*/
 
 ATM::ATM(Bank& bank) : bank(bank){
     cash = 0;
