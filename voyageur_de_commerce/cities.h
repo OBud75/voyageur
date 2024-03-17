@@ -6,14 +6,14 @@
 
 class City;
 
-class Cities
+class Path
 {
 private:
     size_t size;
-    std::vector<City*> cities;
+    std::vector<City*> path;
 public:
-    Cities();
-    Cities(Cities *);
+    Path();
+    Path(Path *);
     size_t getSize();
     void addCity(const std::string);
     void addCity(City *);

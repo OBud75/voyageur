@@ -28,6 +28,8 @@ class Account {
     public:
         Account(Client&, double, Bank&);
         void add_amount(double);
+        void remove_amount(double);
+        void check_cash(Client&, double);
         void get_cash(double);
         void add_card(Card*);
         void display_details();
@@ -49,8 +51,9 @@ class Client {
         std::string _name;
         double _cash;
     public:
-        Client(std::string name, double cash);
+        Client(std::string, double);
         std::string getName();
+        double get_cash();
         void add_cash(double);
         void remove_cash(double);
 };
@@ -59,11 +62,21 @@ class Client {
 class ATM {
     private:
         Bank &bank;
+        double cash;
         //Location &location;
 
     public:
-        explicit ATM();
+        explicit ATM(Bank&);
+        void cash_refill(double);
+        double check_cash();
 
+};
+
+class notEnoughCash : public std::exception {
+public:
+    virtual const char* what() const noexcept{
+        return "Not enough cash";
+    }
 };
 
 #endif // MODELS_H

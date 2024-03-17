@@ -1,10 +1,12 @@
 #include "withdrawal.h"
-#include <iostream>
 
-Card::Card(int card_number) : _card_number(card_number){
-
+Card::Card(Account &_account, int card_number) : account(_account), _card_number(card_number){
+    _account.add_card(this);
 }
 
+Account &Card::get_account(){
+    return account;
+}
 
 int GoldCard::max_withdrawal() const{
     return 500;
@@ -22,25 +24,11 @@ int BlackCard::max_credit() const{
     return 500;
 }
 
-//
-//class PlatiniumCard : public Card {
-//    public:
-//        int max_withdrawal() const override;
-//        int max_credit() const override;
-//};
+int PlatiniumCard::max_withdrawal() const{
+    return 2500;
+}
 
-//
-//template<typename Card>
-//Withdrawal<Card>::Withdrawal(Card &card) : creditcard(card) {
-//}
-//
-//template<typename Card>
-//int Withdrawal<Card>::operator()(int amount) {
-//    if (amount <= creditcard.max_withdrawal()){
-//        return amount;
-//    }
-//    else {
-//        std::cout << "Amount exceeds the authorized withdrawal" << std::endl;
-//        return -1;
-//    }
-//}
+int PlatiniumCard::max_credit() const{
+    return 1000;
+}
+
