@@ -23,8 +23,8 @@ int main()
 
     bob_account.display_details();
 
-    Withdrawal bob_withdraw1(*&bob_gold);
-    Withdrawal bob_withdraw2(*&bob_black);
+    Withdrawal<GoldCard> bob_withdraw1(*&bob_gold);
+    Withdrawal<BlackCard> bob_withdraw2(*&bob_black);
 
     bob_withdraw1(50);
     bob_withdraw2(1001);
