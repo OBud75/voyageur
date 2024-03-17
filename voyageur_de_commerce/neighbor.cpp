@@ -5,7 +5,6 @@ Neighbor::Neighbor(City *_city, int _distance)
 {
     city = _city;
     distance = _distance;
-    isVisited = false;
 }
 
 int Neighbor::getDistance()

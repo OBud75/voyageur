@@ -6,7 +6,7 @@
 City::City(const std::string& _name)
 {
     name =_name;
-    distance = 0; // ajout
+    distance = 0;
 }
 
 const std::string City::getName()
@@ -23,6 +23,7 @@ void City::addNeighbor(City *_city, int _distance)
     }
 }
 
+//affiche à partir d'une ville de départ ses voisins, puis les voisins de ceux-ci, etc.
 void City::display(int indent, std::vector<City*> *already_displayed)
 {
     already_displayed->push_back(this);

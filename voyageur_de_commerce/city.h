@@ -5,7 +5,7 @@
 #include <string>
 
 class Neighbor;
-class Cities;
+class Path;
 
 class City
 {

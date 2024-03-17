@@ -5,5 +5,5 @@
 *.d
 old
 backup
-voyageur_commerce
 bin
+*.bin
