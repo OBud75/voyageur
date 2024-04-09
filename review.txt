@@ -1,0 +1,50 @@
+En fonction du problème, déclarer des variables au niveau global peut être une bonne idée.
+Dans des programmes de plus grosse envergure il est souvent préférable de les encaspuler dans des fonctions, classes ou structures (déclarer startingCity etc dans main et passer la variables aux fonctions qui en ont besoin).
+
+Le code se lit facilement, les variables sont bien nommées, vous gardez votre logique de notation tout du long etc.
+C'est cotre logique tout du long ce qui est grandement apprécié.
+Quand vous mettez un commentaire comme "// Definit la ville de depart", quelque part vous avez fait le plus dur dans l'organisation du code en séparant la fonctionnalité et la nommant.
+Allez jusqu'au bout, on peut créer un fonction getInitialCity par exemple et encapsuler la logique correpondante.
+La fonction main se lira beaucoup plus facilement et la fonction getInitialCity pourra être téstée, maintenue et réutilisée séparément.
+
+Une bonne facon de vous appercevoir que vous devez séparer vos fonctions est que leurs noms ne correspond pas à ce qu'elles font :
+void researchBestPath(City *current_city, Path *path, int current_distance){
+Puis le commentaire indique "affiche la ville sommet actuelle et la route en cours d'exploration"
+Qui croire? On se retrouve à lire les commentaires puis on se sent obligé de lire le code de toute facon.
+// On a déja trouve un chemin candidat et la distance actuelle dépasse la distance de ce dernier --> sortie
+if(shortest_distance != -1 && current_distance > shortest_distance)
+{
+    return;
+}
+
+==>
+bool is_path_found = (shortest_distance != -1);
+bool is_shorter = (current_distance < shortest_distance);
+if (is_path_found and is_shorter) {
+    ...
+}
+Plus besoin de se poser, la question, le code donne toutes les indications necessaires.
+
+
+Cela vous permettra beaucoup plus facilement de donner la responsabilité à tel ou tel classe (ou package peu importe) de faire ces actions.
+
+Préférer utiliser les méthodes qui voennent avec les objets (.get(i) plutot que [i], cela permet d'assurer que l'objet est bien sensé faire ce que vous demandez).
+
+La structure Path "sur mesure" pour les besoins de l'exercice correspond bien à l'idée de que que peut apporter la programmation orientée objet.
+On peut s'imaginer assez facilement ajouter des méthodes à cette classe comme par exemple la surchage des comparateurs (>, <, == etc) pour savoir si un chemin est plus court qu'un autre par exemple. (Dans l'idée de vous familiariser avec ces tachniques, pas forcément de les utiliser dans du code en production).
+Vous pouvez facilment encapsuler les conditions de la fonction main dans la classe Path
+Par exemple     //Si le chemin fait la même taille que la liste contenant toutes les villes (uniques) (+ 1 car on revient à la ville de départ)
+    // && la ville actuelle  = ville de départ --> sortie
+if(path->getSize() == all_cities.getSize() + 1 && current_city == startingCity)
+deviendrait if (path.isShorterThan(all_cities.getSize()) par exemple
+Le code appelant se lit ainsi comme de l'anglais.
+
+Attention à l'utilisation des pointeurs, prennez le temps de comprendre le fonctionnement
+Withdrawal<Card> alice_withdraw(*&alice_card);
+
+& signifie qu'un veut l'adresse (le pointeur) de l'objet alice_card
+* déréférence ce pointeur pour retourner à l'objet.
+Je ne suis pas sur de comprendre ce que vous avez voulu faire mais dans les fait ce code revient à faire
+Withdrawal<Card> alice_withdraw(alice_card);
+
+15/20

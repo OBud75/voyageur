@@ -14,23 +14,16 @@ Path *shortest_path = nullptr;
 Path all_cities;
 City *startingCity = nullptr;
 
-/*-----------------------------------------------------------------------------
 
-                            PROGRAMME PRINCIPAL
-
------------------------------------------------------------------------------*/
-
-int main(int argc, char *argv[])
-{
-// Pour passer un fichier avec une liste de villes, sur le modele ville_a - distance - ville_b
+void loadCities(int argc, char *argv[]) {
     if (argc != 2) {
         std::cerr << "Usage: " << argv[0] << " <nom_fichier>" << std::endl;
-        return 1;
+        quick_exit;
     }
     std::ifstream file(argv[1]);
     if (!file.is_open()) {
         std::cerr << "Erreur lors de l'ouverture du fichier." << std::endl;
-        return 2;
+        quick_exit;
     }
 
     std::string line;
@@ -48,8 +41,10 @@ int main(int argc, char *argv[])
         all_cities.addCity(cityToName);
         all_cities.find(cityFromName)->addNeighbor(all_cities.find(cityToName), distance);
     }
+}
 
-// Definit la ville de depart
+
+void defineInitialCIty() {
     std::string userInput;
 
     while(startingCity == nullptr)
@@ -65,6 +60,19 @@ int main(int argc, char *argv[])
     all_cities.find(userInput)->display(0, displayed_cities);
     delete displayed_cities;
     std::cout << "------------------------------------------------ " << std::endl;
+}
+
+
+/*-----------------------------------------------------------------------------
+
+                            PROGRAMME PRINCIPAL
+
+-----------------------------------------------------------------------------*/
+
+int main(int argc, char *argv[])
+{
+    loadCities(argc, argv);
+    defineInitialCIty();
 
     //lance le chrono avant execution de la recherche
     auto start = std::chrono::high_resolution_clock::now();
